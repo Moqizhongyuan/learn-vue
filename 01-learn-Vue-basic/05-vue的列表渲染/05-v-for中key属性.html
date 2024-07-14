@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button @click="insertF">插入f</button>
+    <ul>
+      <!-- key要求是唯一：id -->
+      <li v-for="item in letters" :key="item">{{item}}</li>
+    </ul>
+  </div>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script>
+    //声明app
+    const app = Vue.createApp({
+      data() {
+        return {
+          letters: ["a", "b", "c", "d", "e"]
+        }
+      },
+      methods: {
+        insertF() {
+          this.letters.splice(2, 0, "f")
+        }
+      }
+    })
+    //挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>

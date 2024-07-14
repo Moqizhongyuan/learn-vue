@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <button @click="switchImage">切换图片</button>
+    </div>
+    <h2>{{message}}</h2>
+    <img :src="showImgUrl" alt="">
+    <br>
+    <a :href="aUrl">百度一下</a>
+  </div>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script>
+    //声明app
+    const app = Vue.createApp({
+      data: function() {
+        return {
+          message: "Hello Vue",
+          imgUrl1: "https://pics1.baidu.com/feed/0df3d7ca7bcb0a46947a351106ef13286a60afd3.jpeg@f_auto?token=c92e7e8a90338eef61b05a208351e34c",
+          imgUrl2: "https://pics4.baidu.com/feed/f636afc379310a55af331af6b336aaa582261018.jpeg@f_auto?token=23bbaa35a27ac1f08262863b101add2c",
+          showImgUrl: "https://pics4.baidu.com/feed/f636afc379310a55af331af6b336aaa582261018.jpeg@f_auto?token=23bbaa35a27ac1f08262863b101add2c",
+          aUrl: "https://www.baidu.com"
+        }
+      },
+      methods: {
+        switchImage: function() {
+          this.showImgUrl = this.showImgUrl === this.imgUrl1 ? this.imgUrl2: this.imgUrl1
+        }
+      }
+    })
+    //挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  img {
+    width: 200px;
+    height: 200px;
+  }
+</style>
+<body>
+  <div id="app">
+    <div>
+      <button @click="toggle">切换</button>
+    </div>
+    
+    <template v-if="isShowCode">
+      <img src="https://game.gtimg.cn/images/yxzj/web201706/images/comm/floatwindow/wzry_qrcode.jpg" alt="">
+    </template>
+  </div>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script>
+    //声明app
+    const app = Vue.createApp({
+      data() {
+        return {
+          isShowCode: true
+        }
+      },
+      methods: {
+        toggle() {
+          this.isShowCode = !this.isShowCode
+        }
+      }
+    })
+    //挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>

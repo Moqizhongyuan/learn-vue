@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .product {
+    background-color: orange;
+  }
+</style>
+<body>
+
+  <div id="app">
+    <home-nav></home-nav>
+    <product-item></product-item>
+    <product-item></product-item>
+    <product-item></product-item>
+  </div>
+
+  <template id="nav">
+    <div>--------------nav start----------------------</div>
+    <h2>我是应用程序的导航</h2>
+    <product-item></product-item>
+    <div>--------------nav end------------------------</div>
+  </template>
+
+  <template id="product">
+    <div class="product">
+      <h2>{{title}}</h2>
+      <p>商品描述，限时折扣，赶紧抢购</p>
+      <p>价格：{{price}}</p>
+      <button @click="favarItem">收藏</button>
+    </div>
+  </template>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script>
+    //声明app
+    // 1.创建app
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: "Hello Vue"
+        }
+      },
+    })
+
+    // 2.注册全局组件
+    // 全局组件的特点：一旦注册成功，可以在任意其他组件的template中使用
+    app.component("product-item", {
+      template: "#product",
+      data() {
+        return {
+          title: "我是商品的Item",
+          price: 9.9
+        }
+      },
+      methods: {
+        favarItem() {
+          console.log("收藏了当前的item")
+        }
+      }
+    })
+
+    app.component("home-nav", {
+      template: "#nav"
+    })
+    //挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>

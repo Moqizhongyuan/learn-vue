@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .product {
+    background-color: orange;
+  }
+</style>
+<body>
+  <div id="app">
+    <!-- 1.内容 -->
+    
+    <!-- 2.内容 -->
+    <div class="product">
+      <h2>我是商品</h2>
+      <div>商品图片</div>
+      <div>商品价格：<span>￥9.9</span></div>
+      <p>商品描述信息，9.9秒杀</p>
+    </div>
+    <!-- 3.内容 -->
+    <div class="product">
+      <h2>我是商品</h2>
+      <div>商品图片</div>
+      <div>商品价格：<span>￥9.9</span></div>
+      <p>商品描述信息，9.9秒杀</p>
+    </div>
+
+    <!-- 使用product-item组件 -->
+    <product-item></product-item>
+    <product-item></product-item>
+    <product-item></product-item>
+    <product-item></product-item>
+    <product-item></product-item>
+    <product-item></product-item>
+  </div>
+  <template id="item">
+    <div class="product">
+      <h2>我是商品</h2>
+      <div>商品图片</div>
+      <div>商品价格：<span>￥9.9</span></div>
+      <p>商品描述信息，9.9秒杀</p>
+    </div>
+  </template>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script>
+    // 1.组件：App组件(根组件)
+    const App = {
+      data() {
+        return {
+          title: "我是标题",
+          content: "我是内容，哈哈哈哈"
+        }
+      },
+    }
+
+    // 2.开发product-item的组件
+    const productItem = {
+      template: `#item`
+    }
+
+    // 3.创建app
+    const app = Vue.createApp(App)
+    
+    // 4.注册一个全局组件
+    app.component("product-item", productItem)
+    // 挂载
+    app.mount("#app")
+  </script>
+</body>
+</html>

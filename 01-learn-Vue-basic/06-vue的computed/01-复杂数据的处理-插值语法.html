@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 通过插值语法表达式直接进行拼接 -->
+    <h2>{{ firstName + " " + lastName }}</h2>
+    <h2>{{ firstName }} {{ lastName }}</h2>
+
+    <h2>{{ score >= 60 ? '及格': '不及格' }}</h2>
+
+    <h2>{{ message.split(" ").reverse().join(" ")}}</h2>
+  </div>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script>
+    //声明app
+    const app = Vue.createApp({
+      data() {
+        return {
+          // 姓名
+          firstName: "kobe",
+          lastName: "bryant",
+
+          // 分数
+          score: 80,
+
+          // 一串文本:反转显示
+          message: "my name is why"
+        }
+      },
+    })
+    //挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>

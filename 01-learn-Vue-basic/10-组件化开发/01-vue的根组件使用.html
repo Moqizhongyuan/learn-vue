@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+  </div>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script>
+    // App组件(根组件)
+    const App = {
+      data() {
+        return {
+          message: "Hello Vue"
+        }
+      },
+    }
+
+    //声明app
+    const app = Vue.createApp(App)
+    //挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- v-if="条件" -->
+    <div v-if="Object.keys(info).length">
+      <h2>个人信息</h2>
+      <ul>
+        <li>姓名：{{info.name}}</li>
+        <li>年龄：{{info.age}}</li>
+      </ul>
+    </div>
+  </div>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script>
+    //声明app
+    const app = Vue.createApp({
+      data() {
+        return {
+          info: { name: "why", age: 18 }
+          // info: {}
+        }
+      },
+    })
+    //挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>

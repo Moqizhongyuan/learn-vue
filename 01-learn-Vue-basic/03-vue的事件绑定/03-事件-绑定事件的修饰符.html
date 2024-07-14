@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    background-color: orange;
+  }
+</style>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <div class="box" @click="divClick">
+      <button @click.stop="btnClick">按钮</button>
+    </div>
+  </div>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script>
+    //声明app
+    const app = Vue.createApp({
+      data: function() {
+        return {
+          message: "Hello Vue"
+        }
+      },
+      methods: {
+        btnClick() {
+          console.log("btnClick")
+        },
+        divClick() {
+          console.log("divClick")
+        }
+      }
+    })
+    //挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>

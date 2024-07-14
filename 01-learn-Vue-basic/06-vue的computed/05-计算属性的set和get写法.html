@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{ fullname }}</h2>
+
+    <button @click="setFullname">设置fullname</button>
+  </div>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script>
+    //声明app
+    const app = Vue.createApp({
+      data() {
+        return {
+          firstname: "coder",
+          lastname: "why"
+        }
+      },
+      computed: {
+        fullname: {
+          get: function() {
+            return this.firstname + " " + this.lastname
+          },
+          set: function(value) {
+            console.log(value)
+            const names = value.split(" ")
+            this.firstname = names[0]
+            this.lastname = names[1]
+          }
+        }
+      },
+      methods: {
+        setFullname() {
+          this.fullname = "kobe bryant"
+        }
+      }
+    })
+    //挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  img {
+    height: 500px;
+    width: 400px;
+  }
+  table {
+    border-collapse: collapse;
+  }
+  th {
+    background-color: #f5f5f5;
+  }
+  th, td {
+    text-align: center;
+    border: 1px solid #000;
+    padding: 8px 16px;
+  }
+  .active {
+    background-color: red;
+  }
+</style>
+<body>
+  <div id="app">
+    <template v-if="books.length">
+      <table>
+        <thead>
+          <th>序号</th>
+          <th>书籍名称</th>
+          <th>出版日期</th>
+          <th>价格</th>
+          <th>购买数量</th>
+          <th>操作</th>
+        </thead>
+        <tbody>
+          <tr v-for="(item, index) in books" 
+              :key="item.id"
+              :class="{active:currentIndex === index}"
+              @click="rowClick(index)">
+            <td>{{index+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.date}}</td>
+            <td>{{setPrice(item.price)}}</td>
+            <td>
+              <button @click.stop="decrement(index, $event)" :disabled="item.count <= 1">-</button>
+              {{item.count}}
+              <button @click.stop="increment(index, $event)">+</button>
+            </td>
+            <td><button @click.stop="removeBook(index, $event)">移除</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <h2>总价：{{setPrice(sumPrice)}}</h2>
+    </template>
+    <template v-else>
+      <img src="./data/Cache_-aace0a6fe8e9406..jpg" alt="小舒">
+      <h2>无书籍，请于商城添加</h2>
+    </template>
+  </div>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script src="./data/data.js"></script>
+  <script>
+    //声明app
+    const app = Vue.createApp({
+      data() {
+        return {
+          books,
+          currentIndex: -1
+        }
+      },
+      methods: {
+        setPrice(price) {
+          return "￥" + price
+        },
+        increment(index, event) {
+          books[index].count++
+          
+        },
+        decrement(index) {
+          this.books[index].count--
+          
+        },
+        removeBook(index) {
+          this.books.splice(index,1)
+          
+        },
+        rowClick(index) {
+          if (this.currentIndex == index)
+          this.currentIndex = -1
+          else
+          this.currentIndex = index
+        }
+      },
+      computed: {
+        sumPrice() {
+          let price = 0
+          for(const item of this.books) {
+            price += item.price * item.count
+          }
+          return price
+        }
+      }
+    })
+    //挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>

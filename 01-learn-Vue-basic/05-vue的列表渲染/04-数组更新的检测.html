@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="item in names">{{item}}</li>
+      <!-- <li v-for="item of names">{{item}}</li> -->
+    </ul>
+    <button @click="changeArray">修改数组</button>
+  </div>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script>
+    //声明app
+    const app = Vue.createApp({
+      data() {
+        return {
+          names: ["abc", "cba", "nba", "aaaa", "ccc"]
+        }
+      },
+      methods: {
+        changeArray() {
+          // 1.直接将数组修改为一个新的数组
+          // this.names = ["why", "kobe"]
+
+          // 2.通过一个数组方法，修改数组中的元素
+          // this.names.push("why")
+          // this.names.pop()
+          // this.names.splice(2, 1, "why")
+
+          // 3.不修改原数组的方法是不能侦听（watch）
+          const newNames = this.names.map(item => item + "why")
+          this.names = newNames
+        }
+      }
+    })
+    //挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>

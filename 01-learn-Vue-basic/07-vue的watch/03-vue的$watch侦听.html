@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{message}}</h2>
+    <button @click="changeMessage">修改message</button>
+  </div>
+  <script src="../01-vue基础语法/02-vue引入方式-本地/lib/vue.js"></script>
+  <script>
+    //声明app
+    const app = Vue.createApp({
+      data() {
+        return {
+          message: "Hello Vue"
+        }
+      },
+      methods: {
+        changeMessage() {
+          this.message = "你好啊，李银河！"
+        }
+      },
+      // 声明周期回调函数：当前组件被创建时自动执行
+      // 一般在该函数中，会进行网络请求
+      created() {
+        // ajax/fetch/axios
+        console.log("created")
+
+        this.$watch("message", (newValue, oldValue) => {
+          console.log("数据变化：", newValue,oldValue)
+        },{ deep: true })
+      }
+    })
+    //挂载app
+    app.mount("#app")
+  </script>
+</body>
+</html>
